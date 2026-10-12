@@ -1,0 +1,15 @@
+{
+  "domain": "tududi",
+  "name": "Tududi",
+  "codeowners": [
+    "@editicalu"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/editicalu/tududi_hacs",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/editicalu/tududi_hacs/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

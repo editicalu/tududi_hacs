@@ -1,0 +1,1749 @@
+create_task:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    note:
+      selector:
+        text:
+          multiline: true
+    due_date:
+      selector:
+        date: {}
+    defer_until:
+      selector:
+        datetime: {}
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - archived
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    project:
+      example: Home
+      selector:
+        text: {}
+    area:
+      selector:
+        text: {}
+    goal:
+      selector:
+        text: {}
+    parent_task:
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    estimated_minutes:
+      selector:
+        number:
+          min: 5
+          max: 720
+          mode: box
+          unit_of_measurement: min
+    recurrence_type:
+      selector:
+        select:
+          options:
+          - none
+          - daily
+          - weekly
+          - monthly
+          - monthly_weekday
+          - monthly_last_day
+          - yearly
+          mode: dropdown
+          multiple: false
+    recurrence_interval:
+      selector:
+        number:
+          min: 1
+          max: 365
+          mode: box
+    recurrence_end_date:
+      selector:
+        date: {}
+    recurrence_weekday:
+      selector:
+        number:
+          min: 0
+          max: 6
+          mode: box
+    recurrence_weekdays:
+      selector:
+        select:
+          options:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          mode: dropdown
+          multiple: true
+    recurrence_month_day:
+      selector:
+        number:
+          min: 1
+          max: 31
+          mode: box
+    recurrence_week_of_month:
+      selector:
+        number:
+          min: 1
+          max: 5
+          mode: box
+    completion_based:
+      selector:
+        boolean: {}
+    assigned_to:
+      selector:
+        text: {}
+    subtasks:
+      selector:
+        text:
+          multiple: true
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_task:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    note:
+      selector:
+        text:
+          multiline: true
+    due_date:
+      selector:
+        date: {}
+    defer_until:
+      selector:
+        datetime: {}
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - archived
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    project:
+      example: Home
+      selector:
+        text: {}
+    area:
+      selector:
+        text: {}
+    goal:
+      selector:
+        text: {}
+    parent_task:
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    estimated_minutes:
+      selector:
+        number:
+          min: 5
+          max: 720
+          mode: box
+          unit_of_measurement: min
+    recurrence_type:
+      selector:
+        select:
+          options:
+          - none
+          - daily
+          - weekly
+          - monthly
+          - monthly_weekday
+          - monthly_last_day
+          - yearly
+          mode: dropdown
+          multiple: false
+    recurrence_interval:
+      selector:
+        number:
+          min: 1
+          max: 365
+          mode: box
+    recurrence_end_date:
+      selector:
+        date: {}
+    recurrence_weekday:
+      selector:
+        number:
+          min: 0
+          max: 6
+          mode: box
+    recurrence_weekdays:
+      selector:
+        select:
+          options:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          mode: dropdown
+          multiple: true
+    recurrence_month_day:
+      selector:
+        number:
+          min: 1
+          max: 31
+          mode: box
+    recurrence_week_of_month:
+      selector:
+        number:
+          min: 1
+          max: 5
+          mode: box
+    completion_based:
+      selector:
+        boolean: {}
+    assigned_to:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+complete_task:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_task:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+skip_task_occurrence:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_task:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_subtasks:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_tasks:
+  fields:
+    type:
+      default: all
+      selector:
+        select:
+          options:
+          - all
+          - today
+          - upcoming
+          - next
+          - inbox
+          - someday
+          - waiting
+          mode: dropdown
+          multiple: false
+    status:
+      default: active
+      selector:
+        select:
+          options:
+          - active
+          - done
+          - all
+          mode: dropdown
+          multiple: false
+    project:
+      example: Home
+      selector:
+        text: {}
+    area:
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    order_by:
+      selector:
+        text: {}
+    limit:
+      selector:
+        number:
+          min: 1
+          max: 1000
+          mode: box
+    offset:
+      selector:
+        number:
+          min: 0
+          max: 100000
+          mode: box
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_task_metrics:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_project:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    description:
+      selector:
+        text:
+          multiline: true
+    area:
+      selector:
+        text: {}
+    goal:
+      selector:
+        text: {}
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    due_date_at:
+      selector:
+        date: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    color:
+      selector:
+        text: {}
+    pin_to_sidebar:
+      selector:
+        boolean: {}
+    is_maintenance:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_project:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    description:
+      selector:
+        text:
+          multiline: true
+    area:
+      selector:
+        text: {}
+    goal:
+      selector:
+        text: {}
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    due_date_at:
+      selector:
+        date: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    color:
+      selector:
+        text: {}
+    pin_to_sidebar:
+      selector:
+        boolean: {}
+    is_maintenance:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_project:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_project:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_projects:
+  fields:
+    status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_area:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    description:
+      selector:
+        text:
+          multiline: true
+    color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_area:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    description:
+      selector:
+        text:
+          multiline: true
+    color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_area:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_areas:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_note:
+  fields:
+    title:
+      required: true
+      selector:
+        text: {}
+    content:
+      selector:
+        text:
+          multiline: true
+    project:
+      example: Home
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    color:
+      selector:
+        text: {}
+    pin_to_sidebar:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_note:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    title:
+      selector:
+        text: {}
+    content:
+      selector:
+        text:
+          multiline: true
+    project:
+      example: Home
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    color:
+      selector:
+        text: {}
+    pin_to_sidebar:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_note:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_note:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_notes:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_tag:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    color:
+      selector:
+        text: {}
+    pinned:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_tag:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    color:
+      selector:
+        text: {}
+    pinned:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_tag:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_tags:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+add_to_inbox:
+  fields:
+    content:
+      required: true
+      selector:
+        text:
+          multiline: true
+    source:
+      example: home_assistant
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_inbox_item:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    content:
+      selector:
+        text:
+          multiline: true
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+process_inbox_item:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_inbox_item:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_inbox:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_habit:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    note:
+      selector:
+        text:
+          multiline: true
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    habit_polarity:
+      selector:
+        select:
+          options:
+          - build
+          - quit
+          mode: dropdown
+          multiple: false
+    habit_frequency_period:
+      selector:
+        select:
+          options:
+          - daily
+          - weekly
+          - monthly
+          - interval
+          mode: dropdown
+          multiple: false
+    habit_target_count:
+      selector:
+        number:
+          min: 1
+          max: 1000
+          mode: box
+    habit_target_value:
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          mode: box
+    habit_unit:
+      selector:
+        text: {}
+    habit_schedule_days:
+      selector:
+        select:
+          options:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          mode: dropdown
+          multiple: true
+    habit_interval_days:
+      selector:
+        number:
+          min: 2
+          max: 365
+          mode: box
+          unit_of_measurement: d
+    habit_time_of_day:
+      selector:
+        select:
+          options:
+          - morning
+          - afternoon
+          - evening
+          mode: dropdown
+          multiple: false
+    habit_reminder_time:
+      example: 08:00
+      selector:
+        text: {}
+    habit_color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_habit:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    note:
+      selector:
+        text:
+          multiline: true
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    habit_polarity:
+      selector:
+        select:
+          options:
+          - build
+          - quit
+          mode: dropdown
+          multiple: false
+    habit_frequency_period:
+      selector:
+        select:
+          options:
+          - daily
+          - weekly
+          - monthly
+          - interval
+          mode: dropdown
+          multiple: false
+    habit_target_count:
+      selector:
+        number:
+          min: 1
+          max: 1000
+          mode: box
+    habit_target_value:
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          mode: box
+    habit_unit:
+      selector:
+        text: {}
+    habit_schedule_days:
+      selector:
+        select:
+          options:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          mode: dropdown
+          multiple: true
+    habit_interval_days:
+      selector:
+        number:
+          min: 2
+          max: 365
+          mode: box
+          unit_of_measurement: d
+    habit_time_of_day:
+      selector:
+        select:
+          options:
+          - morning
+          - afternoon
+          - evening
+          mode: dropdown
+          multiple: false
+    habit_reminder_time:
+      example: 08:00
+      selector:
+        text: {}
+    habit_color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_habit:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+complete_habit:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    completed_at:
+      selector:
+        datetime: {}
+    value:
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          mode: box
+    note:
+      selector:
+        text:
+          multiline: true
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+skip_habit:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    date:
+      selector:
+        date: {}
+    note:
+      selector:
+        text:
+          multiline: true
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+archive_habit:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+unarchive_habit:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_habit_completion:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    completion_id:
+      required: true
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_habits:
+  fields:
+    archived:
+      default: false
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_habit_stats:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    start_date:
+      selector:
+        date: {}
+    end_date:
+      selector:
+        date: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_habit_completions:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    start_date:
+      selector:
+        date: {}
+    end_date:
+      selector:
+        date: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_goal:
+  fields:
+    title:
+      required: true
+      selector:
+        text: {}
+    why:
+      selector:
+        text:
+          multiline: true
+    area:
+      selector:
+        text: {}
+    horizon:
+      selector:
+        select:
+          options:
+          - season
+          - year
+          mode: dropdown
+          multiple: false
+    target_date:
+      selector:
+        date: {}
+    status:
+      selector:
+        select:
+          options:
+          - active
+          - achieved
+          - paused
+          - dropped
+          mode: dropdown
+          multiple: false
+    color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_goal:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    title:
+      selector:
+        text: {}
+    why:
+      selector:
+        text:
+          multiline: true
+    area:
+      selector:
+        text: {}
+    horizon:
+      selector:
+        select:
+          options:
+          - season
+          - year
+          mode: dropdown
+          multiple: false
+    target_date:
+      selector:
+        date: {}
+    status:
+      selector:
+        select:
+          options:
+          - active
+          - achieved
+          - paused
+          - dropped
+          mode: dropdown
+          multiple: false
+    color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_goal:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_goals:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_person:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    relationship_type:
+      selector:
+        text: {}
+    email:
+      selector:
+        text: {}
+    phone:
+      selector:
+        text: {}
+    notes:
+      selector:
+        text:
+          multiline: true
+    color:
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_person:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    relationship_type:
+      selector:
+        text: {}
+    email:
+      selector:
+        text: {}
+    phone:
+      selector:
+        text: {}
+    notes:
+      selector:
+        text:
+          multiline: true
+    color:
+      selector:
+        text: {}
+    archived:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_person:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_people:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+create_view:
+  fields:
+    name:
+      required: true
+      example: Buy milk
+      selector:
+        text: {}
+    search_query:
+      selector:
+        text: {}
+    filters:
+      selector:
+        select:
+          options:
+          - Task
+          - Project
+          - Area
+          - Note
+          - Tag
+          mode: dropdown
+          multiple: true
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    due:
+      selector:
+        text: {}
+    defer:
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    extras:
+      selector:
+        text:
+          multiple: true
+    recurring:
+      selector:
+        text: {}
+    task_status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - archived
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    is_pinned:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+update_view:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    name:
+      example: Buy milk
+      selector:
+        text: {}
+    search_query:
+      selector:
+        text: {}
+    filters:
+      selector:
+        select:
+          options:
+          - Task
+          - Project
+          - Area
+          - Note
+          - Tag
+          mode: dropdown
+          multiple: true
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    due:
+      selector:
+        text: {}
+    defer:
+      selector:
+        text: {}
+    tags:
+      selector:
+        text:
+          multiple: true
+    extras:
+      selector:
+        text:
+          multiple: true
+    recurring:
+      selector:
+        text: {}
+    task_status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - archived
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    is_pinned:
+      selector:
+        boolean: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+delete_view:
+  fields:
+    uid:
+      required: true
+      example: abc123def456
+      selector:
+        text: {}
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+get_views:
+  fields:
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}
+
+search:
+  fields:
+    query:
+      example: milk
+      selector:
+        text: {}
+    filters:
+      selector:
+        select:
+          options:
+          - Task
+          - Project
+          - Area
+          - Note
+          - Tag
+          mode: dropdown
+          multiple: true
+    tags:
+      selector:
+        text:
+          multiple: true
+    priority:
+      selector:
+        select:
+          options:
+          - low
+          - medium
+          - high
+          mode: dropdown
+          multiple: false
+    due:
+      selector:
+        text: {}
+    status:
+      selector:
+        select:
+          options:
+          - active
+          - completed
+          - all
+          mode: dropdown
+          multiple: false
+    task_status:
+      selector:
+        select:
+          options:
+          - not_started
+          - in_progress
+          - done
+          - archived
+          - waiting
+          - cancelled
+          - planned
+          mode: dropdown
+          multiple: false
+    limit:
+      selector:
+        number:
+          min: 1
+          max: 1000
+          mode: box
+    offset:
+      selector:
+        number:
+          min: 0
+          max: 100000
+          mode: box
+    config_entry_id:
+      selector:
+        config_entry:
+          integration: tududi
+    extra:
+      selector:
+        object: {}

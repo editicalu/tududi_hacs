@@ -1,0 +1,1811 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to tududi",
+        "description": "Create an API key in tududi under Profile → API keys.",
+        "data": {
+          "url": "URL",
+          "api_key": "API key",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "url": "Base URL of your tududi server, for example https://tududi.example.com.",
+          "api_key": "Personal API key used as a Bearer token."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate tududi",
+        "description": "The API key for {url} was rejected. Enter a new one.",
+        "data": {
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the tududi server.",
+      "invalid_auth": "The API key was rejected.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This tududi account is already configured.",
+      "reauth_successful": "Reauthentication was successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "scan_interval": "Update interval"
+        }
+      }
+    }
+  },
+  "entity": {
+    "todo": {
+      "tasks": {
+        "name": "Tasks"
+      }
+    },
+    "sensor": {
+      "open_tasks": {
+        "name": "Open tasks"
+      },
+      "in_progress_tasks": {
+        "name": "Tasks in progress"
+      },
+      "due_today_tasks": {
+        "name": "Tasks due today"
+      },
+      "overdue_tasks": {
+        "name": "Overdue tasks"
+      },
+      "today_plan_tasks": {
+        "name": "Today plan"
+      },
+      "suggested_tasks": {
+        "name": "Suggested tasks"
+      },
+      "completed_today_tasks": {
+        "name": "Tasks completed today"
+      },
+      "stale_tasks": {
+        "name": "Tasks pending over a month"
+      },
+      "inbox_items": {
+        "name": "Inbox items"
+      },
+      "habit_streak": {
+        "name": "{habit} streak"
+      }
+    },
+    "button": {
+      "complete_habit": {
+        "name": "Complete {habit}"
+      }
+    }
+  },
+  "exceptions": {
+    "api_error": {
+      "message": "Tududi request failed: {error}"
+    },
+    "not_found": {
+      "message": "No tududi {kind} matches \"{ref}\"."
+    },
+    "entry_not_loaded": {
+      "message": "Tududi config entry {entry_id} is not loaded."
+    },
+    "no_entries": {
+      "message": "No tududi instance is configured."
+    },
+    "multiple_entries": {
+      "message": "Several tududi instances are configured; set config_entry_id."
+    }
+  },
+  "services": {
+    "create_task": {
+      "name": "Create task",
+      "description": "Creates a task in tududi.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "note": {
+          "name": "Note",
+          "description": "Free-form note (Markdown)."
+        },
+        "due_date": {
+          "name": "Due date",
+          "description": "Due date."
+        },
+        "defer_until": {
+          "name": "Defer until",
+          "description": "Hide the task until this moment."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Status."
+        },
+        "project": {
+          "name": "Project",
+          "description": "Project name or UID. Empty clears it."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "goal": {
+          "name": "Goal",
+          "description": "Goal title or UID. Empty clears it."
+        },
+        "parent_task": {
+          "name": "Parent task",
+          "description": "UID or numeric id of the parent task, making this a subtask."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "estimated_minutes": {
+          "name": "Estimated minutes",
+          "description": "Rough duration of the task."
+        },
+        "recurrence_type": {
+          "name": "Recurrence",
+          "description": "How the task repeats."
+        },
+        "recurrence_interval": {
+          "name": "Recurrence interval",
+          "description": "Repeat every N periods."
+        },
+        "recurrence_end_date": {
+          "name": "Recurrence end date",
+          "description": "Stop repeating after this date."
+        },
+        "recurrence_weekday": {
+          "name": "Recurrence weekday",
+          "description": "Weekday for weekly/monthly-weekday recurrence (0 = Sunday)."
+        },
+        "recurrence_weekdays": {
+          "name": "Recurrence weekdays",
+          "description": "Weekdays for weekly recurrence (0 = Sunday)."
+        },
+        "recurrence_month_day": {
+          "name": "Recurrence day of month",
+          "description": "Day of the month for monthly recurrence."
+        },
+        "recurrence_week_of_month": {
+          "name": "Recurrence week of month",
+          "description": "Week of the month for monthly-weekday recurrence."
+        },
+        "completion_based": {
+          "name": "Repeat after completion",
+          "description": "Schedule the next occurrence relative to when the task is completed."
+        },
+        "assigned_to": {
+          "name": "Assigned to",
+          "description": "UID of the person to assign the task to."
+        },
+        "subtasks": {
+          "name": "Subtasks",
+          "description": "Names of subtasks to create under the new task."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_task": {
+      "name": "Update task",
+      "description": "Updates fields of a tududi task. Fields you leave out stay unchanged.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "note": {
+          "name": "Note",
+          "description": "Free-form note (Markdown)."
+        },
+        "due_date": {
+          "name": "Due date",
+          "description": "Due date."
+        },
+        "defer_until": {
+          "name": "Defer until",
+          "description": "Hide the task until this moment."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Status."
+        },
+        "project": {
+          "name": "Project",
+          "description": "Project name or UID. Empty clears it."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "goal": {
+          "name": "Goal",
+          "description": "Goal title or UID. Empty clears it."
+        },
+        "parent_task": {
+          "name": "Parent task",
+          "description": "UID or numeric id of the parent task, making this a subtask."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "estimated_minutes": {
+          "name": "Estimated minutes",
+          "description": "Rough duration of the task."
+        },
+        "recurrence_type": {
+          "name": "Recurrence",
+          "description": "How the task repeats."
+        },
+        "recurrence_interval": {
+          "name": "Recurrence interval",
+          "description": "Repeat every N periods."
+        },
+        "recurrence_end_date": {
+          "name": "Recurrence end date",
+          "description": "Stop repeating after this date."
+        },
+        "recurrence_weekday": {
+          "name": "Recurrence weekday",
+          "description": "Weekday for weekly/monthly-weekday recurrence (0 = Sunday)."
+        },
+        "recurrence_weekdays": {
+          "name": "Recurrence weekdays",
+          "description": "Weekdays for weekly recurrence (0 = Sunday)."
+        },
+        "recurrence_month_day": {
+          "name": "Recurrence day of month",
+          "description": "Day of the month for monthly recurrence."
+        },
+        "recurrence_week_of_month": {
+          "name": "Recurrence week of month",
+          "description": "Week of the month for monthly-weekday recurrence."
+        },
+        "completion_based": {
+          "name": "Repeat after completion",
+          "description": "Schedule the next occurrence relative to when the task is completed."
+        },
+        "assigned_to": {
+          "name": "Assigned to",
+          "description": "UID of the person to assign the task to."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "complete_task": {
+      "name": "Complete task",
+      "description": "Marks a tududi task as done.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_task": {
+      "name": "Delete task",
+      "description": "Deletes a tududi task.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "skip_task_occurrence": {
+      "name": "Skip task occurrence",
+      "description": "Skips the current occurrence of a recurring task.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_task": {
+      "name": "Get task",
+      "description": "Returns one tududi task.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_subtasks": {
+      "name": "Get subtasks",
+      "description": "Returns the subtasks of a task.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_tasks": {
+      "name": "Get tasks",
+      "description": "Returns tududi tasks from one of its lists (today, upcoming, inbox, and so on).",
+      "fields": {
+        "type": {
+          "name": "List",
+          "description": "Which task list to return."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Open, completed, or all tasks."
+        },
+        "project": {
+          "name": "Project",
+          "description": "Project name or UID. Empty clears it."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "order_by": {
+          "name": "Order by",
+          "description": "Sort order, for example `due_date:asc`."
+        },
+        "limit": {
+          "name": "Limit",
+          "description": "Maximum number of results."
+        },
+        "offset": {
+          "name": "Offset",
+          "description": "Number of results to skip."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_task_metrics": {
+      "name": "Get task metrics",
+      "description": "Returns tududi's dashboard metrics and task lists.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_project": {
+      "name": "Create project",
+      "description": "Creates a tududi project.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "description": {
+          "name": "Description",
+          "description": "Description."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "goal": {
+          "name": "Goal",
+          "description": "Goal title or UID. Empty clears it."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Project status."
+        },
+        "due_date_at": {
+          "name": "Due date",
+          "description": "Project due date."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "pin_to_sidebar": {
+          "name": "Pin to sidebar",
+          "description": "Pin it to the tududi sidebar."
+        },
+        "is_maintenance": {
+          "name": "Maintenance project",
+          "description": "Mark the project as an ongoing maintenance project."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_project": {
+      "name": "Update project",
+      "description": "Updates a tududi project.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "description": {
+          "name": "Description",
+          "description": "Description."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "goal": {
+          "name": "Goal",
+          "description": "Goal title or UID. Empty clears it."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Project status."
+        },
+        "due_date_at": {
+          "name": "Due date",
+          "description": "Project due date."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "pin_to_sidebar": {
+          "name": "Pin to sidebar",
+          "description": "Pin it to the tududi sidebar."
+        },
+        "is_maintenance": {
+          "name": "Maintenance project",
+          "description": "Mark the project as an ongoing maintenance project."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_project": {
+      "name": "Delete project",
+      "description": "Deletes a tududi project.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_project": {
+      "name": "Get project",
+      "description": "Returns one tududi project.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_projects": {
+      "name": "Get projects",
+      "description": "Returns tududi projects.",
+      "fields": {
+        "status": {
+          "name": "Status",
+          "description": "Only projects with this status."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_area": {
+      "name": "Create area",
+      "description": "Creates a tududi area.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "description": {
+          "name": "Description",
+          "description": "Description."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_area": {
+      "name": "Update area",
+      "description": "Updates a tududi area.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "description": {
+          "name": "Description",
+          "description": "Description."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_area": {
+      "name": "Delete area",
+      "description": "Deletes a tududi area.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_areas": {
+      "name": "Get areas",
+      "description": "Returns tududi areas.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_note": {
+      "name": "Create note",
+      "description": "Creates a tududi note.",
+      "fields": {
+        "title": {
+          "name": "Title",
+          "description": "Title."
+        },
+        "content": {
+          "name": "Content",
+          "description": "Text content."
+        },
+        "project": {
+          "name": "Project",
+          "description": "Project name or UID. Empty clears it."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "pin_to_sidebar": {
+          "name": "Pin to sidebar",
+          "description": "Pin it to the tududi sidebar."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_note": {
+      "name": "Update note",
+      "description": "Updates a tududi note.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "title": {
+          "name": "Title",
+          "description": "Title."
+        },
+        "content": {
+          "name": "Content",
+          "description": "Text content."
+        },
+        "project": {
+          "name": "Project",
+          "description": "Project name or UID. Empty clears it."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "pin_to_sidebar": {
+          "name": "Pin to sidebar",
+          "description": "Pin it to the tududi sidebar."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_note": {
+      "name": "Delete note",
+      "description": "Deletes a tududi note.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_note": {
+      "name": "Get note",
+      "description": "Returns one tududi note.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_notes": {
+      "name": "Get notes",
+      "description": "Returns tududi notes.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_tag": {
+      "name": "Create tag",
+      "description": "Creates a tududi tag.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "pinned": {
+          "name": "Pinned",
+          "description": "Pin the tag."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_tag": {
+      "name": "Update tag",
+      "description": "Renames or recolors a tududi tag.",
+      "fields": {
+        "uid": {
+          "name": "Tag",
+          "description": "UID or name of the tag."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "pinned": {
+          "name": "Pinned",
+          "description": "Pin the tag."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_tag": {
+      "name": "Delete tag",
+      "description": "Deletes a tududi tag.",
+      "fields": {
+        "uid": {
+          "name": "Tag",
+          "description": "UID or name of the tag."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_tags": {
+      "name": "Get tags",
+      "description": "Returns tududi tags.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "add_to_inbox": {
+      "name": "Add to inbox",
+      "description": "Adds a quick-capture item to the tududi inbox.",
+      "fields": {
+        "content": {
+          "name": "Content",
+          "description": "Text content."
+        },
+        "source": {
+          "name": "Source",
+          "description": "Where the item came from."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_inbox_item": {
+      "name": "Update inbox item",
+      "description": "Edits a tududi inbox item.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "content": {
+          "name": "Content",
+          "description": "Text content."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "process_inbox_item": {
+      "name": "Process inbox item",
+      "description": "Marks a tududi inbox item as processed.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_inbox_item": {
+      "name": "Delete inbox item",
+      "description": "Deletes a tududi inbox item.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_inbox": {
+      "name": "Get inbox",
+      "description": "Returns the open tududi inbox items.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_habit": {
+      "name": "Create habit",
+      "description": "Creates a tududi habit.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "note": {
+          "name": "Note",
+          "description": "Free-form note (Markdown)."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "habit_polarity": {
+          "name": "Habit type",
+          "description": "Build a good habit or quit a bad one."
+        },
+        "habit_frequency_period": {
+          "name": "Frequency",
+          "description": "Period the target applies to."
+        },
+        "habit_target_count": {
+          "name": "Target count",
+          "description": "Completions needed per period."
+        },
+        "habit_target_value": {
+          "name": "Target amount",
+          "description": "Amount to reach per completion, for measurable habits."
+        },
+        "habit_unit": {
+          "name": "Unit",
+          "description": "Unit of the target amount."
+        },
+        "habit_schedule_days": {
+          "name": "Schedule days",
+          "description": "Weekdays the habit is due (0 = Sunday). Empty means every day."
+        },
+        "habit_interval_days": {
+          "name": "Interval days",
+          "description": "For interval habits: every N days."
+        },
+        "habit_time_of_day": {
+          "name": "Time of day",
+          "description": "Preferred time of day."
+        },
+        "habit_reminder_time": {
+          "name": "Reminder time",
+          "description": "Reminder time as HH:MM."
+        },
+        "habit_color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_habit": {
+      "name": "Update habit",
+      "description": "Updates a tududi habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "note": {
+          "name": "Note",
+          "description": "Free-form note (Markdown)."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "habit_polarity": {
+          "name": "Habit type",
+          "description": "Build a good habit or quit a bad one."
+        },
+        "habit_frequency_period": {
+          "name": "Frequency",
+          "description": "Period the target applies to."
+        },
+        "habit_target_count": {
+          "name": "Target count",
+          "description": "Completions needed per period."
+        },
+        "habit_target_value": {
+          "name": "Target amount",
+          "description": "Amount to reach per completion, for measurable habits."
+        },
+        "habit_unit": {
+          "name": "Unit",
+          "description": "Unit of the target amount."
+        },
+        "habit_schedule_days": {
+          "name": "Schedule days",
+          "description": "Weekdays the habit is due (0 = Sunday). Empty means every day."
+        },
+        "habit_interval_days": {
+          "name": "Interval days",
+          "description": "For interval habits: every N days."
+        },
+        "habit_time_of_day": {
+          "name": "Time of day",
+          "description": "Preferred time of day."
+        },
+        "habit_reminder_time": {
+          "name": "Reminder time",
+          "description": "Reminder time as HH:MM."
+        },
+        "habit_color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_habit": {
+      "name": "Delete habit",
+      "description": "Deletes a tududi habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "complete_habit": {
+      "name": "Complete habit",
+      "description": "Logs a completion of a tududi habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "completed_at": {
+          "name": "Completed at",
+          "description": "When it was done. Defaults to now."
+        },
+        "value": {
+          "name": "Value",
+          "description": "Amount achieved, for measurable habits."
+        },
+        "note": {
+          "name": "Note",
+          "description": "Free-form note (Markdown)."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "skip_habit": {
+      "name": "Skip habit",
+      "description": "Skips a day of a tududi habit without breaking the streak.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "date": {
+          "name": "Date",
+          "description": "Day to skip. Defaults to today."
+        },
+        "note": {
+          "name": "Note",
+          "description": "Free-form note (Markdown)."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "archive_habit": {
+      "name": "Archive habit",
+      "description": "Archives a tududi habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "unarchive_habit": {
+      "name": "Unarchive habit",
+      "description": "Restores an archived tududi habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_habit_completion": {
+      "name": "Delete habit completion",
+      "description": "Deletes one logged completion of a habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "completion_id": {
+          "name": "Completion ID",
+          "description": "ID of the completion to delete."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_habits": {
+      "name": "Get habits",
+      "description": "Returns tududi habits.",
+      "fields": {
+        "archived": {
+          "name": "Archived",
+          "description": "Return archived habits instead of active ones."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_habit_stats": {
+      "name": "Get habit stats",
+      "description": "Returns statistics for a tududi habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "start_date": {
+          "name": "Start date",
+          "description": "Start of the date range."
+        },
+        "end_date": {
+          "name": "End date",
+          "description": "End of the date range."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_habit_completions": {
+      "name": "Get habit completions",
+      "description": "Returns the logged completions of a habit.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "start_date": {
+          "name": "Start date",
+          "description": "Start of the date range."
+        },
+        "end_date": {
+          "name": "End date",
+          "description": "End of the date range."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_goal": {
+      "name": "Create goal",
+      "description": "Creates a tududi goal.",
+      "fields": {
+        "title": {
+          "name": "Title",
+          "description": "Title."
+        },
+        "why": {
+          "name": "Why",
+          "description": "Why this goal matters."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "horizon": {
+          "name": "Horizon",
+          "description": "Time horizon of the goal."
+        },
+        "target_date": {
+          "name": "Target date",
+          "description": "Date to reach the goal by."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Goal status."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_goal": {
+      "name": "Update goal",
+      "description": "Updates a tududi goal.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "title": {
+          "name": "Title",
+          "description": "Title."
+        },
+        "why": {
+          "name": "Why",
+          "description": "Why this goal matters."
+        },
+        "area": {
+          "name": "Area",
+          "description": "Area name or UID. Empty clears it."
+        },
+        "horizon": {
+          "name": "Horizon",
+          "description": "Time horizon of the goal."
+        },
+        "target_date": {
+          "name": "Target date",
+          "description": "Date to reach the goal by."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Goal status."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_goal": {
+      "name": "Delete goal",
+      "description": "Deletes a tududi goal.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_goals": {
+      "name": "Get goals",
+      "description": "Returns tududi goals.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_person": {
+      "name": "Create person",
+      "description": "Creates a person in tududi.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "relationship_type": {
+          "name": "Relationship",
+          "description": "Relationship to you, for example colleague or friend."
+        },
+        "email": {
+          "name": "Email",
+          "description": "Email address."
+        },
+        "phone": {
+          "name": "Phone",
+          "description": "Phone number."
+        },
+        "notes": {
+          "name": "Notes",
+          "description": "Notes about the person."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_person": {
+      "name": "Update person",
+      "description": "Updates a person in tududi.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "relationship_type": {
+          "name": "Relationship",
+          "description": "Relationship to you, for example colleague or friend."
+        },
+        "email": {
+          "name": "Email",
+          "description": "Email address."
+        },
+        "phone": {
+          "name": "Phone",
+          "description": "Phone number."
+        },
+        "notes": {
+          "name": "Notes",
+          "description": "Notes about the person."
+        },
+        "color": {
+          "name": "Color",
+          "description": "Color as a hex value, for example `#3b82f6`."
+        },
+        "archived": {
+          "name": "Archived",
+          "description": "Archive or restore the person."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_person": {
+      "name": "Delete person",
+      "description": "Deletes a person from tududi.",
+      "fields": {
+        "uid": {
+          "name": "UID",
+          "description": "UID of the item."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_people": {
+      "name": "Get people",
+      "description": "Returns the people in tududi.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "create_view": {
+      "name": "Create view",
+      "description": "Creates a saved view (smart list) in tududi.",
+      "fields": {
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "search_query": {
+          "name": "Search query",
+          "description": "Text to search for."
+        },
+        "filters": {
+          "name": "Types",
+          "description": "Item types to include."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "due": {
+          "name": "Due",
+          "description": "Due filter, for example `today`, `week` or `overdue`."
+        },
+        "defer": {
+          "name": "Defer",
+          "description": "Defer filter."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "extras": {
+          "name": "Extras",
+          "description": "Extra filters such as `recurring` or `has_note`."
+        },
+        "recurring": {
+          "name": "Recurring",
+          "description": "Recurring filter."
+        },
+        "task_status": {
+          "name": "Task status",
+          "description": "Only tasks with this status."
+        },
+        "is_pinned": {
+          "name": "Pinned",
+          "description": "Pin the view."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "update_view": {
+      "name": "Update view",
+      "description": "Updates a saved tududi view.",
+      "fields": {
+        "uid": {
+          "name": "View",
+          "description": "UID of the view."
+        },
+        "name": {
+          "name": "Name",
+          "description": "Name."
+        },
+        "search_query": {
+          "name": "Search query",
+          "description": "Text to search for."
+        },
+        "filters": {
+          "name": "Types",
+          "description": "Item types to include."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "due": {
+          "name": "Due",
+          "description": "Due filter, for example `today`, `week` or `overdue`."
+        },
+        "defer": {
+          "name": "Defer",
+          "description": "Defer filter."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "extras": {
+          "name": "Extras",
+          "description": "Extra filters such as `recurring` or `has_note`."
+        },
+        "recurring": {
+          "name": "Recurring",
+          "description": "Recurring filter."
+        },
+        "task_status": {
+          "name": "Task status",
+          "description": "Only tasks with this status."
+        },
+        "is_pinned": {
+          "name": "Pinned",
+          "description": "Pin the view."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "delete_view": {
+      "name": "Delete view",
+      "description": "Deletes a saved tududi view.",
+      "fields": {
+        "uid": {
+          "name": "View",
+          "description": "UID of the view."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "get_views": {
+      "name": "Get views",
+      "description": "Returns the saved tududi views.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    },
+    "search": {
+      "name": "Search",
+      "description": "Searches tududi tasks, projects, areas, notes and tags.",
+      "fields": {
+        "query": {
+          "name": "Query",
+          "description": "Text to search for."
+        },
+        "filters": {
+          "name": "Types",
+          "description": "Item types to include."
+        },
+        "tags": {
+          "name": "Tags",
+          "description": "Tag names. Tags that don't exist yet are created."
+        },
+        "priority": {
+          "name": "Priority",
+          "description": "Priority."
+        },
+        "due": {
+          "name": "Due",
+          "description": "Due filter, for example `today`, `week` or `overdue`."
+        },
+        "status": {
+          "name": "Status",
+          "description": "Open, completed, or all tasks."
+        },
+        "task_status": {
+          "name": "Task status",
+          "description": "Only tasks with this status."
+        },
+        "limit": {
+          "name": "Limit",
+          "description": "Maximum number of results."
+        },
+        "offset": {
+          "name": "Offset",
+          "description": "Number of results to skip."
+        },
+        "config_entry_id": {
+          "name": "Tududi instance",
+          "description": "Config entry to use. Only needed when more than one tududi server is configured."
+        },
+        "extra": {
+          "name": "Extra fields",
+          "description": "Additional raw API fields merged into the request body, for anything not covered by the other fields."
+        }
+      }
+    }
+  }
+}
