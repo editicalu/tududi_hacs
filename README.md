@@ -7,9 +7,9 @@ A custom integration that connects Home Assistant to a self-hosted
 - **To-do lists**: a *Tasks* list for tasks without a project, plus one list per
   open project. Add, edit, check off and delete tasks from the HA to-do card or
   with the `todo.*` actions. Project lists appear and disappear as projects change.
-- **Sensors**: open, in progress, due today, overdue, today plan, suggested,
-  completed today, pending over a month, and inbox items. Each metric sensor
-  lists its tasks in the `tasks` attribute. Every habit also gets a streak sensor
+- **Sensors**: open, in progress, due today, overdue, high priority overdue,
+  today plan, suggested, completed today, pending over a month, and inbox
+  items. Each metric sensor lists its tasks in the `tasks` attribute. Every habit also gets a streak sensor
   (best streak, strength and progress are attributes).
 - **Buttons**: one *Complete &lt;habit&gt;* button per habit.
 - **Actions (services)**: create, update, delete and read nearly everything in

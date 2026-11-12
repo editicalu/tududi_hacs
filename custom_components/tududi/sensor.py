@@ -14,6 +14,7 @@ from homeassistant.components.sensor import (
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
+from .const import priority_name
 from .coordinator import TududiConfigEntry, TududiCoordinator, TududiData
 from .entity import TududiEntity, async_add_dynamic_entities
 
@@ -39,12 +40,26 @@ def _list_len(key: str) -> Callable[[TududiData], int | None]:
     return value
 
 
+def _high_priority_overdue(data: TududiData) -> list[dict[str, Any]] | None:
+    """Overdue tasks with high priority; None when the metric is missing."""
+    tasks = data.metrics.get("tasks_overdue")
+    if not isinstance(tasks, list):
+        return None
+    return [t for t in tasks if priority_name(t.get("priority")) == "high"]
+
+
+def _high_priority_overdue_count(data: TududiData) -> int | None:
+    tasks = _high_priority_overdue(data)
+    return None if tasks is None else len(tasks)
+
+
 @dataclass(frozen=True, kw_only=True)
 class TududiSensorDescription(SensorEntityDescription):
     """Describes a tududi metric sensor."""
 
     value_fn: Callable[[TududiData], Any]
     tasks_key: str | None = None
+    tasks_fn: Callable[[TududiData], list[dict[str, Any]] | None] | None = None
 
 
 METRIC_SENSORS: tuple[TududiSensorDescription, ...] = (
@@ -70,6 +85,12 @@ METRIC_SENSORS: tuple[TududiSensorDescription, ...] = (
         translation_key="overdue_tasks",
         value_fn=_list_len("tasks_overdue"),
         tasks_key="tasks_overdue",
+    ),
+    TududiSensorDescription(
+        key="high_priority_overdue_tasks",
+        translation_key="high_priority_overdue_tasks",
+        value_fn=_high_priority_overdue_count,
+        tasks_fn=_high_priority_overdue,
     ),
     TududiSensorDescription(
         key="today_plan_tasks",
@@ -161,6 +182,8 @@ class TududiMetricSensor(TududiEntity, SensorEntity):
                 "tasks": _summaries(data.completed_today),
                 "weekly_completions": data.metrics.get("weekly_completions"),
             }
+        if tasks_fn := self.entity_description.tasks_fn:
+            return {"tasks": _summaries(tasks_fn(data))}
         if key := self.entity_description.tasks_key:
             return {"tasks": _summaries(data.metrics.get(key))}
         return None

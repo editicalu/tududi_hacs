@@ -60,6 +60,9 @@
       "overdue_tasks": {
         "name": "Overdue tasks"
       },
+      "high_priority_overdue_tasks": {
+        "name": "High priority overdue tasks"
+      },
       "today_plan_tasks": {
         "name": "Today plan"
       },

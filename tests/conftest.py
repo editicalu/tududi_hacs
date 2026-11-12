@@ -40,6 +40,15 @@ TASKS = [
         "project_uid": "proj1",
     },
 ]
+OVERDUE_HIGH = {
+    "id": 13,
+    "uid": "task4",
+    "name": "Urgent",
+    "status": 0,
+    "due_date": "2026-10-01",
+    "priority": 2,
+    "project_uid": None,
+}
 COMPLETED = [
     {"id": 12, "uid": "task3", "name": "Done today", "status": 2, "project_uid": None}
 ]
@@ -55,7 +64,7 @@ METRICS = {
     "tasks_in_progress": [TASKS[1]],
     "tasks_today_plan": [],
     "tasks_due_today": [],
-    "tasks_overdue": [TASKS[0]],
+    "tasks_overdue": [TASKS[0], OVERDUE_HIGH],
     "suggested_tasks": [],
     "tasks_completed_today": COMPLETED,
 }

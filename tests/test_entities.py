@@ -24,8 +24,11 @@ async def test_metric_sensors(
     assert hass.states.get("sensor.tududi_me_open_tasks").state == "2"
     assert hass.states.get("sensor.tududi_me_tasks_in_progress").state == "1"
     overdue = hass.states.get("sensor.tududi_me_overdue_tasks")
-    assert overdue.state == "1"
+    assert overdue.state == "2"
     assert overdue.attributes["tasks"][0]["uid"] == "task1"
+    high = hass.states.get("sensor.tududi_me_high_priority_overdue_tasks")
+    assert high.state == "1"
+    assert [t["uid"] for t in high.attributes["tasks"]] == ["task4"]
     assert hass.states.get("sensor.tududi_me_tasks_completed_today").state == "1"
     assert hass.states.get("sensor.tududi_me_inbox_items").state == "1"
 
